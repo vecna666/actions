@@ -1,0 +1,14 @@
+name: SYNC
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+jobs:
+   sync:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh repo sync user/repo -b main --force
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
